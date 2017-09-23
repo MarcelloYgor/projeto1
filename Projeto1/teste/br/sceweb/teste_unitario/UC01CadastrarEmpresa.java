@@ -16,8 +16,13 @@ public class UC01CadastrarEmpresa {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		empresa = new Empresa();
 		empresaDAO = new EmpresaDAO();
+		empresa = new Empresa();
+		empresa.setNomeDaEmpresa("empresa x");
+		empresa.setCnpj("89424232000180");
+		empresa.setNomeFantasia("empresa x");
+		empresa.setEndereco("rua taquari");
+		empresa.setTelefone("2222");
 	}
 
 	@AfterClass
@@ -27,6 +32,11 @@ public class UC01CadastrarEmpresa {
 	@Test
 	public void CT01UC01CadastrarEmpresaComSucesso() {
 		assertEquals(1, empresaDAO.adiciona(empresa));
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void CT02UC01CadastrarEmpresa_nome_invalido() {
+		empresa.setNomeDaEmpresa("");
 	}
 
 }
