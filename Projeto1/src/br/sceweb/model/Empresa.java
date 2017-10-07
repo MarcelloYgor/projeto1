@@ -10,7 +10,7 @@ public class Empresa {
 	
 	public void setNomeDaEmpresa(String nomeDaEmpresa) {
 		if (nomeDaEmpresa.equals("")) {
-			throw new IllegalArgumentException("Nome da empresa inv·lido!");
+			throw new IllegalArgumentException("Nome da empresa inv√°lido!");
 		} else {
 			this.nomeDaEmpresa = nomeDaEmpresa;
 		}
@@ -51,6 +51,4 @@ public class Empresa {
 	public String getNomeDaEmpresa() {
 		return nomeDaEmpresa;
 	}
-	
-	
 }

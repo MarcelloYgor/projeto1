@@ -12,7 +12,7 @@ public class EmpresaDAO {
 	public int adiciona(Empresa empresa) {
 		PreparedStatement ps;
 		int codigoRetorno = 0;
-		try (Connection conn = (Connection) new FabricaDeConexoes().getConnection()) {
+		try (Connection conn = (Connection) FabricaDeConexoes.getFabrica().getConnection()) {
 			ps = (PreparedStatement) conn.prepareStatement(
 					"insert into empresa (cnpj, nomeDaEmpresa, nomeFantasia, endereco, telefone) values(?,?,?,?,?)");
 			ps.setString(1, empresa.getCnpj());
@@ -28,4 +28,24 @@ public class EmpresaDAO {
 		return codigoRetorno;
 	}
 
+	public int remove(String cnpj) {
+		PreparedStatement ps = null;
+		int codigoRetorno = 0;
+		try {
+			Connection conn = (Connection) FabricaDeConexoes.getFabrica().getConnection();
+			String sql = "delete from empresa where cnpj = ?";
+			ps = (PreparedStatement) conn.prepareStatement(sql);
+			ps.setString(0, cnpj);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if (ps != null)
+				try {
+					ps.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+		}
+		return codigoRetorno;
+	}
 }

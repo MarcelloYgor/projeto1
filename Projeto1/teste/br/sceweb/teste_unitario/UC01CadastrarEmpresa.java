@@ -27,10 +27,11 @@ public class UC01CadastrarEmpresa {
 
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
+		
 	}
 
 	@Test
-	public void CT01UC01CadastrarEmpresaComSucesso() {
+	public void CT01UC01FBCadastrarEmpresaComSucesso() {
 		assertEquals(1, empresaDAO.adiciona(empresa));
 	}
 	
